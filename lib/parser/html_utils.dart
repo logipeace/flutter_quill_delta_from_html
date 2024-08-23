@@ -58,7 +58,8 @@ Map<String, dynamic> parseStyleAttribute(String style) {
           final color = validateAndGetColor(value);
           attributes['background'] = color;
           break;
-        case 'padding-left' || 'padding-right':
+        case 'padding-left':
+        case 'padding-right':
           final indentation = parseToIndent(value);
           if (indentation != 0) {
             attributes['indent'] = indentation;
@@ -106,11 +107,17 @@ Map<String, dynamic> parseStyleAttribute(String style) {
       }
     } else {
       switch (style) {
-        case 'justify' || 'center' || 'left' || 'right':
+        case 'justify':
+        case 'center':
+        case 'left':
+        case 'right':
           attributes['align'] = style;
+          break;
         case 'rtl':
           attributes['direction'] = 'rtl';
-        case 'true' || 'false':
+          break;
+        case 'true':
+        case 'false':
           // Treat as check list
           if (style == 'true') {
             attributes['list'] = 'checked';
